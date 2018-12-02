@@ -1,0 +1,96 @@
+import random
+import networkx as nx
+import matplotlib.pyplot as plt
+
+class A():
+
+    alphas=[]
+    handing_nodes=[]
+    count_nodes_grafs=[]
+
+    def count_child_node (is_random,o):
+        if(is_random):
+            return random.randint(0, o)
+        else:
+            return o
+
+
+    def create_graf(count_child_nodes,count_nodes,is_random_child_node=True):
+
+        nodes =[1]
+
+
+        k=0 #индекс актуального элемента
+
+        current_count_node=0
+        count_child_nodes_now=0
+
+        mass_count_child_nodes=[]
+        node=1
+
+
+        mass_handing_nodes=[]
+        G = nx.Graph()
+
+        G.add_node(1)
+
+        A.count_nodes_grafs.append(count_nodes)
+        print(count_nodes)
+
+
+        while(current_count_node<count_nodes):
+            count_child_nodes_now=A.count_child_node(is_random_child_node,count_child_nodes)
+
+            if(count_child_nodes_now+current_count_node>count_nodes):
+                continue
+
+            if(count_child_nodes_now==0 & k!=0):
+                mass_handing_nodes.append(nodes[k])
+                k+=1
+                continue
+
+            if(current_count_node+count_child_nodes_now<=count_nodes):
+                mass_count_child_nodes.append(count_child_nodes_now)
+
+                for i in range(count_child_nodes_now):
+                    node+=1
+                    G.add_node(node)
+                    G.add_edge(nodes[k],node)
+                    nodes.append(1+len(nodes))
+                    print(str(nodes[k])+ "-"+str(node))
+                k += 1
+            current_count_node+=count_child_nodes_now
+
+
+
+        for i in range(len(nodes) - k):
+            mass_handing_nodes.append(nodes[k+i])
+
+        print("nodes")
+        print(nodes)
+
+        print("handing nodes")
+        print(mass_handing_nodes)
+
+        A.handing_nodes.append(len(mass_handing_nodes))
+        alpha=count_nodes/len(mass_handing_nodes)
+        A.alphas.append(alpha)
+        print(alpha)
+
+        print("count handing nodes "+str(len(mass_handing_nodes)))
+
+        print("count levels graf")
+
+        print(G.nbunch_iter())
+
+        print("---")
+        print(nx.to_edgelist(G))
+
+        nx.draw(G, with_labels=True, node_color="blue", alpha=0.6, node_size=50)
+
+        plt.savefig("edge_colormap.png")
+        plt.show()
+
+
+
+
