@@ -7,7 +7,11 @@ a=input()
 print("count nodes")
 b=input()
 
-g.A.create_graf(int(a),int(b))
+c=int(input())
+
+for i in range(c):
+    print(i)
+    g.A.create_graf(int(a),int(b))
 
 
 
