@@ -44,8 +44,10 @@ class A():
             if(count_child_nodes_now+current_count_node>count_nodes):
                 continue
 
-            if(count_child_nodes_now==0 & k!=0):
-                mass_handing_nodes.append(nodes[k])
+            if(count_child_nodes_now==0 ):
+                mass_count_child_nodes.append(count_child_nodes_now)
+
+                mass_handing_nodes.append(nodes[k]-1)
                 k+=1
                 continue
 
@@ -91,6 +93,32 @@ class A():
         plt.savefig("edge_colormap.png")
         plt.show()
 
+        A.create_gist(mass_count_child_nodes)
 
 
 
+    #даже можешь не начинать разбираться в этом
+    def create_gist(counts):
+
+            # max_x= (count%10)+1
+            x = []
+
+            # Самый бессмысленный цикл в мире
+            for i in range(len(counts)):
+                x.append(i)
+
+            # i=1
+            # for i in range(max_x):
+            #    x.append(i*10)
+
+            er = range(len(counts))
+            ax = plt.gca()
+            ax.bar(er, counts, align="edge")
+            ax.set_xticks(er)
+
+            print(len(counts))
+            print(counts)
+            # width=x
+            # plt.bar(len(counts), counts, width,align="edge")
+            # plt.xticks(x)
+            plt.show()
