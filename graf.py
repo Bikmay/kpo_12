@@ -47,8 +47,8 @@ class A():
 
             if(count_child_nodes_now==0 ):
                 mass_count_child_nodes.append(count_child_nodes_now)
-
                 mass_handing_nodes.append(nodes[k-1])
+                nodes.append(1 + len(nodes))
                 k+=1
                 continue
 
@@ -87,6 +87,9 @@ class A():
 
         print("связи по красоте")
         print(G.edges) #тут выводится все связи по красоте
+
+        print("\n---------------------------------------------------------------------------------------")
+        return
 
         nx.draw(G, with_labels=True, node_color="blue", alpha=0.6, node_size=50)
 
