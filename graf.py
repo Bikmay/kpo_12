@@ -22,7 +22,7 @@ class A():
 
         k=0 #индекс актуального элемента
 
-        current_count_node=0
+        current_count_node=1
         count_child_nodes_now=0
 
         mass_count_child_nodes=[]
@@ -42,7 +42,7 @@ class A():
             count_child_nodes_now=A.count_child_node(is_random_child_node,count_child_nodes)
 
             if(count_child_nodes_now+current_count_node>count_nodes):
-                continue
+                count_child_nodes_now = count_nodes - current_count_node
 
             if(count_child_nodes_now==0 ):
                 mass_count_child_nodes.append(count_child_nodes_now)
@@ -56,9 +56,10 @@ class A():
 
                 for i in range(count_child_nodes_now):
                     node+=1
+                    nodes.append(1 + len(nodes))
                     G.add_node(node)
                     G.add_edge(nodes[k],node)
-                    nodes.append(1+len(nodes))
+
                     print(str(nodes[k])+ "-"+str(node))
                 k += 1
             current_count_node+=count_child_nodes_now
