@@ -47,7 +47,7 @@ class A():
             if(count_child_nodes_now==0 ):
                 mass_count_child_nodes.append(count_child_nodes_now)
 
-                mass_handing_nodes.append(nodes[k]-1)
+                mass_handing_nodes.append(nodes[k-1])
                 k+=1
                 continue
 
@@ -70,7 +70,7 @@ class A():
             mass_handing_nodes.append(nodes[k+i])
 
         print("nodes")
-        print(nodes)
+        print(G.nodes)
 
         print("handing nodes")
         print(mass_handing_nodes)
@@ -82,12 +82,10 @@ class A():
 
         print("count handing nodes "+str(len(mass_handing_nodes)))
 
-        print("count levels graf")
+        print("count levels graf") #пока хз как но я в процессе, скоро будет
 
-        print(G.nbunch_iter())
-
-        print("---")
-        print(nx.to_edgelist(G))
+        print("связи по красоте //убирай своё ваяние")
+        print(G.edges) #тут выводится все связи по красоте
 
         nx.draw(G, with_labels=True, node_color="blue", alpha=0.6, node_size=50)
 
