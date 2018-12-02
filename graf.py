@@ -16,6 +16,7 @@ class A():
 
 
     def create_graf(count_child_nodes,count_nodes,is_random_child_node=True):
+        print("\n---------------------------------------------------------------------------------------")
 
         nodes =[1]
 
@@ -60,7 +61,7 @@ class A():
                     G.add_node(node)
                     G.add_edge(nodes[k],node)
 
-                    print(str(nodes[k])+ "-"+str(node))
+                    # print(str(nodes[k])+ "-"+str(node))
                 k += 1
             current_count_node+=count_child_nodes_now
 
@@ -84,7 +85,7 @@ class A():
 
         print("count levels graf") #пока хз как но я в процессе, скоро будет
 
-        print("связи по красоте //убирай своё ваяние")
+        print("связи по красоте")
         print(G.edges) #тут выводится все связи по красоте
 
         nx.draw(G, with_labels=True, node_color="blue", alpha=0.6, node_size=50)
@@ -93,6 +94,8 @@ class A():
         plt.show()
 
         A.create_gist(mass_count_child_nodes)
+
+        print("\n---------------------------------------------------------------------------------------")
 
 
 
