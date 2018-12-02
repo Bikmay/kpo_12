@@ -1,12 +1,14 @@
 import random
 import networkx as nx
 import matplotlib.pyplot as plt
+import ij as q
 
 class A():
 
     alphas=[]
     handing_nodes=[]
     count_nodes_grafs=[]
+    height_graf=[]
 
     def count_child_node (is_random,o):
         if(is_random):
@@ -59,6 +61,8 @@ class A():
                     node+=1
                     nodes.append(1 + len(nodes))
                     G.add_node(node)
+
+
                     G.add_edge(nodes[k],node)
 
                     # print(str(nodes[k])+ "-"+str(node))
@@ -76,6 +80,8 @@ class A():
         print("handing nodes")
         print(mass_handing_nodes)
 
+
+
         A.handing_nodes.append(len(mass_handing_nodes))
         alpha=count_nodes/len(mass_handing_nodes)
         A.alphas.append(alpha)
@@ -84,13 +90,17 @@ class A():
         print("count handing nodes "+str(len(mass_handing_nodes)))
 
         print("count levels graf") #пока хз как но я в процессе, скоро будет
+        io=q.count_height()
+
+        print(io)
+        A.height_graf.append(io)
 
         print("связи по красоте")
         print(G.edges) #тут выводится все связи по красоте
 
         print("\n---------------------------------------------------------------------------------------")
-        return
 
+        return
         nx.draw(G, with_labels=True, node_color="blue", alpha=0.6, node_size=50)
 
         plt.savefig("edge_colormap.png")
