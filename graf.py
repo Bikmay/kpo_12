@@ -18,8 +18,10 @@ class A():
 
 
     def create_graf(count_child_nodes,count_nodes,is_random_child_node=True):
-        print("\n---------------------------------------------------------------------------------------")
 
+        f=open("out.txt",'w')
+        print("\n---------------------------------------------------------------------------------------")
+        f.write("\n---------------------------------------------------------------------------------------"+'\n')
         nodes =[1]
 
 
@@ -38,6 +40,7 @@ class A():
         G.add_node(1)
 
         A.count_nodes_grafs.append(count_nodes)
+        f.write(str(count_nodes+)'\n')
         print(count_nodes)
 
 
@@ -75,27 +78,35 @@ class A():
             mass_handing_nodes.append(nodes[k+i])
 
         print("nodes")
-        print(G.nodes)
+        print(G.nodes+'\n')
+        f.write("nodes")
+        f.write(G.nodes+'\n')
 
-        print("handing nodes")
-        print(mass_handing_nodes)
-
+        print("handing nodes"+'\n')
+        print(str(mass_handing_nodes)+'\n')
+        f.write("handing nodes"+'\n')
+        f.write(str(mass_handing_nodes)+'\n')
 
 
         A.handing_nodes.append(len(mass_handing_nodes))
         alpha=count_nodes/len(mass_handing_nodes)
         A.alphas.append(alpha)
         print(alpha)
+        f.write(str(alpha))
 
         print("count handing nodes "+str(len(mass_handing_nodes)))
+        f.write("count handing nodes "+str(len(mass_handing_nodes))+'\n')
 
-        print("count levels graf") #пока хз как но я в процессе, скоро будет
+        print("count levels graf")
+        f.write("count levels graf"+'\n')
         io=q.count_height()
 
         print(io)
+        f.write(str(io))
         A.height_graf.append(io)
 
-        print("связи по красоте")
+
+        f.write(G.edges)
         print(G.edges) #тут выводится все связи по красоте
 
         print("\n---------------------------------------------------------------------------------------")
@@ -107,7 +118,7 @@ class A():
         plt.show()
 
         A.create_gist(mass_count_child_nodes)
-
+        f.close()
         print("\n---------------------------------------------------------------------------------------")
 
 
@@ -137,3 +148,10 @@ class A():
             # plt.bar(len(counts), counts, width,align="edge")
             # plt.xticks(x)
             plt.show()
+
+    def sum(mass):
+        a=0
+        for i in range(len(mass)):
+           a+=mass[i]
+
+        return a
