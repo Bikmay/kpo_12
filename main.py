@@ -16,11 +16,15 @@ for i in range(c):
     print(i)
     g.A.create_graf(int(a),int(b))
 
+
 print("alphas")
 print(g.A.alphas)
 
 f.write("alphas ")
 f.write(str(g.A.alphas) + '\n')
+
+print("mat ozidanie alpha")
+print(np.mean(g.A.alphas))
 
 print("aver alphas")
 print(g.A.sum(g.A.alphas)/len(g.A.alphas))
