@@ -2,7 +2,7 @@ import graf as g
 import numpy as np
 
 
-f=open("out2.txt")
+f=open("out2.txt", 'w')
 
 print("count child")
 a=input()
@@ -19,27 +19,30 @@ for i in range(c):
 print("alphas")
 print(g.A.alphas)
 
-f.write("alphas")
-f.write(g.A.alphas+'\n')
+f.write("alphas ")
+f.write(str(g.A.alphas) + '\n')
 
 print("aver alphas")
 print(g.A.sum(g.A.alphas)/len(g.A.alphas))
 
-f.write("aver alphas")
-f.write(g.A.sum(g.A.alphas)/len(g.A.alphas)+'\n')
+print("dispers alphas")
+print(str(np.var(g.A.alphas)))
+
+f.write("aver alphas ")
+f.write(str(g.A.sum(g.A.alphas)/len(g.A.alphas))+'\n')
 
 
 print("dispers height")
-print(np.var(g.A.height_graf))
+print(str(np.var(g.A.height_graf)))
 
-f.write("dispers height")
-f.write(np.var(g.A.height_graf)+'\n')
+f.write("dispers height ")
+f.write(str(np.var(g.A.height_graf)) + '\n')
 
 print("aver height")
 print(g.A.sum(g.A.height_graf)/len(g.A.height_graf))
 
-f.write("aver height")
-f.write(g.A.sum(g.A.height_graf)/len(g.A.height_graf)+'\n')
+f.write("aver height ")
+f.write(str(g.A.sum(g.A.height_graf)/len(g.A.height_graf))+'\n')
 
 
 print("dispers handing")
@@ -58,6 +61,14 @@ print("aver count nodes")
 print(g.A.sum(g.A.count_nodes_grafs)/len(g.A.count_nodes_grafs))
 
 
+f.write("count nodes ")
+f.write(str(g.A.count_nodes_grafs) + "\n")
+
+f.write("count handing nodes ")
+f.write(str(g.A.handing_nodes)+"\n")
+
+f.write("levels grafs ")
+f.write(str(g.A.height_graf) + "\n")
 
 
 

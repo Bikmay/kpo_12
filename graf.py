@@ -40,7 +40,7 @@ class A():
         G.add_node(1)
 
         A.count_nodes_grafs.append(count_nodes)
-        f.write(str(count_nodes+)'\n')
+        f.write(str(count_nodes)+'\n')
         print(count_nodes)
 
 
@@ -52,9 +52,10 @@ class A():
 
             if(count_child_nodes_now==0 ):
                 mass_count_child_nodes.append(count_child_nodes_now)
-                mass_handing_nodes.append(nodes[k-1])
+                mass_handing_nodes.append(nodes[k])
                 nodes.append(1 + len(nodes))
                 k+=1
+                current_count_node+=1
                 continue
 
             if(current_count_node+count_child_nodes_now<=count_nodes):
@@ -78,12 +79,12 @@ class A():
             mass_handing_nodes.append(nodes[k+i])
 
         print("nodes")
-        print(G.nodes+'\n')
-        f.write("nodes")
-        f.write(G.nodes+'\n')
+        print(G.nodes)
+        f.write("nodes\n")
+        f.write(str(G.nodes) + "\n")
 
-        print("handing nodes"+'\n')
-        print(str(mass_handing_nodes)+'\n')
+        print("handing nodes")
+        print(str(mass_handing_nodes))
         f.write("handing nodes"+'\n')
         f.write(str(mass_handing_nodes)+'\n')
 
@@ -91,23 +92,26 @@ class A():
         A.handing_nodes.append(len(mass_handing_nodes))
         alpha=count_nodes/len(mass_handing_nodes)
         A.alphas.append(alpha)
+        print("alpha")
         print(alpha)
-        f.write(str(alpha))
+        f.write("alpha\n")
+        f.write(str(alpha) + "\n")
 
         print("count handing nodes "+str(len(mass_handing_nodes)))
         f.write("count handing nodes "+str(len(mass_handing_nodes))+'\n')
 
         print("count levels graf")
-        f.write("count levels graf"+'\n')
+        f.write("count levels graf ")
         io=q.count_height()
 
         print(io)
-        f.write(str(io))
+        f.write(str(io) + "\n")
         A.height_graf.append(io)
 
 
-        f.write(G.edges)
+        f.write(str(G.edges))
         print(G.edges) #тут выводится все связи по красоте
+        f.write("\n---------------------------------------------------------------------------------------"+'\n')
 
         print("\n---------------------------------------------------------------------------------------")
 
