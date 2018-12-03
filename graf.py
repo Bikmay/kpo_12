@@ -27,7 +27,6 @@ class A():
 
         k=0 #индекс актуального элемента
 
-        current_count_node=1
         count_child_nodes_now=0
 
         mass_count_child_nodes=[]
@@ -44,40 +43,40 @@ class A():
         print(count_nodes)
 
 
-        while(current_count_node<count_nodes):
+        while(node<count_nodes):
             count_child_nodes_now=A.count_child_node(is_random_child_node,count_child_nodes)
-
-            if(count_child_nodes_now+current_count_node>count_nodes):
-                count_child_nodes_now = count_nodes - current_count_node
+            #КОСТЫЛЬ на случай если у корневой ноды нарандомится нуль дочерних элементов
+            if(count_child_nodes_now==0 & node==1):
+                count_child_nodes_now = 2
 
             if(count_child_nodes_now==0 ):
                 mass_count_child_nodes.append(count_child_nodes_now)
-                mass_handing_nodes.append(nodes[k])
-                nodes.append(1 + len(nodes))
-                k+=1
-                current_count_node+=1
+                mass_handing_nodes.append(node)
+                nodes.append(node)
+                k+=1 #надо убрать
+                node+=1
                 continue
 
-            if(current_count_node+count_child_nodes_now<=count_nodes):
-                mass_count_child_nodes.append(count_child_nodes_now)
+            if (count_child_nodes_now + node > count_nodes):
+                count_child_nodes_now = count_nodes - node
 
-                for i in range(count_child_nodes_now):
-                    node+=1
-                    nodes.append(1 + len(nodes))
-                    G.add_node(node)
+            mass_count_child_nodes.append(count_child_nodes_now)
 
-
-                    G.add_edge(nodes[k],node)
-
-                    # print(str(nodes[k])+ "-"+str(node))
-                k += 1
-            current_count_node+=count_child_nodes_now
+            for i in range(count_child_nodes_now):
+                node+=1
+                nodes.append(node)
+                G.add_node(node)
+                G.add_edge(nodes[k],node)
+               # print(str(nodes[k])+ "-"+str(node))
+            k += 1
 
 
 
         for i in range(len(nodes) - k):
             mass_handing_nodes.append(nodes[k+i])
 
+        print("debug")
+        print(mass_count_child_nodes)
         print("nodes")
         print(G.nodes)
         f.write("nodes\n")
@@ -110,11 +109,10 @@ class A():
 
 
         f.write(str(G.edges))
-        print(G.edges) #тут выводится все связи по красоте
+        print(G.edges) #это и есть ноды, которые нужны черновой. Их всегда на одну меньше рального кол-ва из-за перво ноды (0, 1)
         f.write("\n---------------------------------------------------------------------------------------"+'\n')
 
         print("\n---------------------------------------------------------------------------------------")
-
         return
         nx.draw(G, with_labels=True, node_color="blue", alpha=0.6, node_size=50)
 

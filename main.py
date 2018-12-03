@@ -48,17 +48,29 @@ f.write(str(g.A.sum(g.A.height_graf)/len(g.A.height_graf))+'\n')
 print("dispers handing")
 print(np.var(g.A.handing_nodes))
 
+f.write("dispers handing ")
+f.write(str(np.var(g.A.handing_nodes))+'\n')
+
 
 
 print("aver handing")
 print(g.A.sum(g.A.handing_nodes)/len(g.A.handing_nodes))
 
+f.write("aver handing ")
+f.write(str(g.A.sum(g.A.handing_nodes)/len(g.A.handing_nodes))+'\n')
+
 
 print("dispers count nodes")
 print(np.var(g.A.count_nodes_grafs))
 
+f.write("dispers count nodes ")
+f.write(str(np.var(g.A.count_nodes_grafs))+'\n')
+
 print("aver count nodes")
 print(g.A.sum(g.A.count_nodes_grafs)/len(g.A.count_nodes_grafs))
+
+f.write("aver count nodes ")
+f.write(str(g.A.sum(g.A.count_nodes_grafs)/len(g.A.count_nodes_grafs))+'\n')
 
 
 f.write("count nodes ")
