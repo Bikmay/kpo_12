@@ -10,6 +10,9 @@ class A():
     count_nodes_grafs=[]
     height_graf=[]
 
+    alphas_on_each=[]
+    nodes_count_on_each=[]
+
     def count_child_node (is_random,o):
         if(is_random):
             return random.randint(0, o)
@@ -17,12 +20,12 @@ class A():
             return o
 
 
-    def create_graf(count_child_nodes,count_nodes,is_random_child_node=True):
+    def create_graf(count_child_nodes,count_nodes,is_random_child_node=True, is_final=False):
 
         f=open("out.txt",'w')
         print("\n---------------------------------------------------------------------------------------")
         f.write("\n---------------------------------------------------------------------------------------"+'\n')
-        nodes =[1]
+        nodes =["0-1"]
 
 
         k=0 #индекс актуального элемента
@@ -57,7 +60,7 @@ class A():
                 node+=1
                 continue
 
-            if (count_child_nodes_now + node > count_nodes):
+            if (count_child_nodes_now + len(nodes) > count_nodes):
                 count_child_nodes_now = count_nodes - node
 
             mass_count_child_nodes.append(count_child_nodes_now)
@@ -66,7 +69,10 @@ class A():
                 node+=1
                 nodes.append(str(k+1) + '-' + str(node))
                 G.add_node(str(k+1) + '-' + str(node))
-                G.add_edge(nodes[k], str(k) + '-' + str(node))
+                G.add_edge(nodes[k], str(k+1) + '-' + str(node))
+                if is_final:
+                    A.alphas_on_each.append(A.ifFinal(len(nodes), len(nodes) - k + 1 + len(mass_handing_nodes)))
+                    A.nodes_count_on_each.append(len(nodes))
                # print(str(nodes[k])+ "-"+str(node))
             k += 1
 
@@ -74,6 +80,10 @@ class A():
 
         for i in range(len(nodes) - k):
             mass_handing_nodes.append(nodes[k+i])
+
+        if is_final:
+            A.alphas_on_each.append(A.ifFinal(len(nodes)+1, len(mass_handing_nodes)))
+            A.nodes_count_on_each.append(len(nodes))
 
         # print("debug")
         # print(mass_count_child_nodes)
@@ -112,6 +122,7 @@ class A():
 
         print("\n---------------------------------------------------------------------------------------")
         return
+        print(G.edges)
         nx.draw(G, with_labels=True, node_color="blue", alpha=0.6, node_size=50)
 
         plt.savefig("edge_colormap.png")
@@ -120,6 +131,7 @@ class A():
         A.create_gist(mass_count_child_nodes)
         f.close()
         print("\n---------------------------------------------------------------------------------------")
+        return
 
 
 
@@ -155,3 +167,6 @@ class A():
            a+=mass[i]
 
         return a
+
+    def ifFinal(nodes, handing_nodes):
+        return nodes/handing_nodes
