@@ -47,7 +47,7 @@ class A():
             count_child_nodes_now=A.count_child_node(is_random_child_node,count_child_nodes)
             #КОСТЫЛЬ на случай если у корневой ноды нарандомится нуль дочерних элементов
             if(count_child_nodes_now==0 & node==1):
-                count_child_nodes_now = 2
+                return #вычитал в методичке
 
             if(count_child_nodes_now==0 ):
                 mass_count_child_nodes.append(count_child_nodes_now)
@@ -75,8 +75,8 @@ class A():
         for i in range(len(nodes) - k):
             mass_handing_nodes.append(nodes[k+i])
 
-        print("debug")
-        print(mass_count_child_nodes)
+        # print("debug")
+        # print(mass_count_child_nodes)
         print("nodes")
         print(G.nodes)
         f.write("nodes\n")
