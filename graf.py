@@ -36,7 +36,7 @@ class A():
         mass_handing_nodes=[]
         G = nx.Graph()
 
-        G.add_node(1)
+        G.add_node("0-1")
 
         A.count_nodes_grafs.append(count_nodes)
         f.write(str(count_nodes)+'\n')
@@ -51,8 +51,8 @@ class A():
 
             if(count_child_nodes_now==0 ):
                 mass_count_child_nodes.append(count_child_nodes_now)
-                mass_handing_nodes.append(node)
-                nodes.append(node)
+                mass_handing_nodes.append(str(k+1) + '-' + str(node))
+                nodes.append(str(k+1) + '-' + str(node))
                 k+=1 #надо убрать
                 node+=1
                 continue
@@ -64,9 +64,9 @@ class A():
 
             for i in range(count_child_nodes_now):
                 node+=1
-                nodes.append(node)
-                G.add_node(node)
-                G.add_edge(nodes[k],node)
+                nodes.append(str(k+1) + '-' + str(node))
+                G.add_node(str(k+1) + '-' + str(node))
+                G.add_edge(nodes[k], str(k) + '-' + str(node))
                # print(str(nodes[k])+ "-"+str(node))
             k += 1
 
@@ -108,8 +108,6 @@ class A():
         A.height_graf.append(io)
 
 
-        f.write(str(G.edges))
-        print(G.edges) #это и есть ноды, которые нужны черновой. Их всегда на одну меньше рального кол-ва из-за перво ноды (0, 1)
         f.write("\n---------------------------------------------------------------------------------------"+'\n')
 
         print("\n---------------------------------------------------------------------------------------")
