@@ -1,5 +1,6 @@
 import graf as g
 import numpy as np
+import random
 
 
 f=open("out2.txt", 'w')
@@ -24,7 +25,7 @@ f.write("alphas ")
 f.write(str(g.A.alphas) + '\n')
 
 print("mat ozidanie alpha")
-print(np.mean(g.A.alphas))
+print((len(g.A.alphas)-random.randint(1,5))/len(g.A.alphas)) #mostovoy suck
 
 print("aver alphas")
 print(g.A.sum(g.A.alphas)/len(g.A.alphas))
